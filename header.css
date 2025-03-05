@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.headerBack {
+    
+    background-color: #bbbbbb;
+    display: flex; 
+    flex-direction: row;
+    justify-content: space-between;
+    height: 42px;
+    padding: 5px 20px;
+    
+}
+
+.headerBack a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    color: rgb(255, 255, 255);
+    font-size: 32px;
+    font-weight: bold;
+    
+}
+
+.icon {
+    width: 42px;
+    height: 42px;
+    cursor: pointer;
+}
+
+.bell {
+    position: relative;
+    cursor: pointer; 
+}
+
+.icon-bell {
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    display: block;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user {        
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.user-name {
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+}
+
+.notification-popup {
+    position: absolute;
+    top: 40px;
+    right: 0;
+    width: 300px;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: none;
+    z-index: 10;
+}
+
+.notification-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.notification-item img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.bell:hover .notification-popup {
+    display: block;
+}
+
