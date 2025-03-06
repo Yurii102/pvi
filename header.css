@@ -3,6 +3,15 @@
     padding: 0;
 }
 
+.skipmain {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+/*Стиль для header*/ 
 .headerBack {
     
     background-color: #bbbbbb;
@@ -20,6 +29,7 @@
     align-items: center;
 }
 
+/*Стиль для logo(CMS)*/
 .logo {
     color: rgb(255, 255, 255);
     font-size: 32px;
@@ -33,9 +43,21 @@
     cursor: pointer;
 }
 
+/*Стиль для bell*/
 .bell {
     position: relative;
     cursor: pointer; 
+}
+
+.notification-dot {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 8px;
+    height: 8px;
+    background-color: red;
+    border-radius: 50%;
+    display: block;
 }
 
 .icon-bell {
@@ -45,6 +67,7 @@
     display: block;
 }
 
+/*Стиль для user*/
 .user-info {
     display: flex;
     align-items: center;
@@ -62,13 +85,14 @@
     font-size: 16px;
 }
 
+/*Стиль для прихованого вікна повідомлень*/
 .notification-popup {
     position: absolute;
-    top: 40px;
+    top: 35px;
     right: 0;
     width: 300px;
     background: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     display: none;
     z-index: 10;
@@ -85,14 +109,23 @@
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    margin-right: 10px;
 }
 
 .notification-item:last-child {
     border-bottom: none;
 }
 
-.bell:hover .notification-popup {
-    display: block;
+.user-info-notification {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 10px;
+    padding: 0 5px 5px 5px;
 }
+
+/*Стиль для прихованого вікна користувача*/
+/* .bell:hover .notification-popup {
+    display: block;
+} */
+
 
