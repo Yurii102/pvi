@@ -57,7 +57,7 @@
     height: 8px;
     background-color: red;
     border-radius: 50%;
-    display: block;
+    display: none;
 }
 
 .icon-bell {
@@ -74,24 +74,14 @@
     gap: 20px;
 }
 
-.user {        
-    display: flex;
-    align-items: center;
-    gap: 5px;
-}
-
-.user-name {
-    color: rgb(255, 255, 255);
-    font-size: 16px;
-}
-
 /*Стиль для прихованого вікна повідомлень*/
 .notification-popup {
     position: absolute;
     top: 35px;
     right: 0;
-    width: 300px;
+    width: 350px;
     background: #fff;
+    max-width: 400px;
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     display: none;
@@ -102,7 +92,7 @@
     display: flex;
     align-items: center;
     padding: 10px;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #d1d1d1;
 }
 
 .notification-item img {
@@ -117,15 +107,125 @@
 
 .user-info-notification {
     display: flex;
+    filter: brightness(0.8);
     flex-direction: column;
     align-items: center;
+    width: 75px;
     margin-right: 10px;
     padding: 0 5px 5px 5px;
 }
 
-/*Стиль для прихованого вікна користувача*/
-/* .bell:hover .notification-popup {
+/*Стиль для rectangle*/
+.rectangle {
+    position: relative;
+    background: #ccc;
+    max-width: 400px;
+    width: 220px;
+    height: 75px;
+    border: 1px solid #888;
+    box-sizing: border-box;
+    overflow: visible;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    border-radius: 15px;
+    padding: 10px;
+}
+
+/* Стрілка */
+.rectangle::before {
+    content: "";
+    position: absolute;
+    left: -10px; 
+    top: 50%; 
+    transform: translateY(-50%); 
+    border-width: 8px; 
+    border-style: solid;
+    border-color: transparent #ccc transparent transparent; 
+}
+
+.rectangle::after {
+    content: "";
+    position: absolute;
+    left: -20px; 
+    top: 30%;
+    transform: translateY(-50%);
+    border-width: 9px;
+    border-style: solid;
+    border-color: transparent #888 transparent transparent;
+}
+
+/* Обрізання тексту */
+.text-content {
+    display: block; 
+    width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+}
+
+@keyframes bellAnimation {
+    0% {transform: rotate(0);}
+    25% {transform: rotate(45deg);}
+    50% {transform: rotate(-45deg);}
+    75% {transform: rotate(20deg);}
+    100% {transform: rotate(-20deg);}
+}
+
+.bell-animation {
+    animation: bellAnimation 0.5s ease-in-out;
+}
+
+.user {        
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.user-name {
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+}
+
+.profile-popup {
+    position: absolute;
+    top: 45px;
+    right: 0;
+    width: 150px;
+    background: #fff;
+    max-width: 400px;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: none;
+    z-index: 10;
+}
+
+.popup-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.popup-menu li {
+    padding: 12px 20px;
+    transition: background 0.3s ease;
+    border-bottom: 1px solid #d1d1d1;
+}
+
+.popup-menu li a {
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
     display: block;
-} */
+    
+}
+
+.popup-menu li:hover {
+    background: #f0f0f0;
+    border-radius: 8px;
+
+}
+
 
 

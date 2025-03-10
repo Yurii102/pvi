@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Students</title>
+    <link rel="stylesheet" href="header.css">
+</head>
+<body>
+    <a class="skipmain" href="#header" target="_self"><h1>Student Managment</h1></a>
+    
+    <header id="header">
+        <div class="headerBack">
+            <a href="students.html" ><h1 class="logo">CMS</h1></a>
+            
+            <div class="user-info">
+                <!-- Сповіщення -->
+                <div class="bell" id="bell">
+                    <div>
+                        <img src="icon\bell.png" alt="Повідомлення" class="icon-bell" id="bellIcon">
+                        <span class="notification-dot" id="notificationDot"></span>
+                    </div>
+
+                    <div class="notification-popup" id="notificationPopup">
+                        <div class="notification-item">
+                            <div class="user-info-notification">
+                                <img src="icon\user.png" alt="Avatar">
+                                <strong>Студент 1</strong>
+                            </div>
+                            
+                            <div class="rectangle">
+                                <p class="text-content">Ваше повідомлення тут.</p>
+                            </div>
+                        </div>
+                        <div class="notification-item">
+                            <div class="user-info-notification">
+                                <img src="icon\user.png" alt="Avatar">
+                                <strong>Студент 2</strong>
+                            </div>
+
+                            <div class="rectangle">
+                                <p class="text-content">Інше повідомлення тут.</p>
+                            </div>
+                        </div>
+                        <div class="notification-item">
+                            <div class="user-info-notification">
+                                <img src="icon\user.png" alt="Avatar">
+                                <strong>Студент 3</strong>
+                            </div>
+
+                            <div class="rectangle">
+                                <p class="text-content">Ще одне повідомлення тут.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Користувач -->
+                <div class="user" id="user">
+                    <img src="icon\user.png" alt="Ім'я користувача" class="icon">
+                    <span class="user-name">Yurii Surniak</span>
+
+                    <div class="profile-popup" id="profilePopup">
+                        <ul class="popup-menu">
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="#">Log Out</a></li>
+                        </ul> 
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Підключення скрипта -->
+    <script src="script.js"></script>
+</body>
+</html>

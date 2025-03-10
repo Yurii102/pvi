@@ -16,9 +16,11 @@
             <div class="user-info">
                 <!-- Сповіщення -->
                 <div class="bell" id="bell">
-                    <img src="icon\bell.png" alt="Повідомлення" class="icon-bell" id="bellIcon">
-                    <span class="notification-dot" id="notificationDot"></span>
-                    
+                    <div>
+                        <img src="icon\bell.png" alt="Повідомлення" class="icon-bell" id="bellIcon">
+                        <span class="notification-dot" id="notificationDot"></span>
+                    </div>
+
                     <div class="notification-popup" id="notificationPopup">
                         <div class="notification-item">
                             <div class="user-info-notification">
@@ -26,8 +28,8 @@
                                 <strong>Студент 1</strong>
                             </div>
                             
-                            <div>
-                                <p>Ваше повідомлення тут.</p>
+                            <div class="rectangle">
+                                <p class="text-content">Ваше повідомлення тут.</p>
                             </div>
                         </div>
                         <div class="notification-item">
@@ -36,8 +38,8 @@
                                 <strong>Студент 2</strong>
                             </div>
 
-                            <div>
-                                <p>Інше повідомлення тут.</p>
+                            <div class="rectangle">
+                                <p class="text-content">Інше повідомлення тут.</p>
                             </div>
                         </div>
                         <div class="notification-item">
@@ -46,8 +48,8 @@
                                 <strong>Студент 3</strong>
                             </div>
 
-                            <div>
-                                <p>Ще одне повідомлення тут.</p>
+                            <div class="rectangle">
+                                <p class="text-content">Ще одне повідомлення тут.</p>
                             </div>
                         </div>
                     </div>
@@ -56,7 +58,14 @@
                 <!-- Користувач -->
                 <div class="user" id="user">
                     <img src="icon\user.png" alt="Ім'я користувача" class="icon">
-                    <span class="user-name">James Bond</span>
+                    <span class="user-name">Yurii Surniak</span>
+
+                    <div class="profile-popup" id="profilePopup">
+                        <ul class="popup-menu">
+                            <li><a href="#">Profile</a></li>
+                            <li><a href="#">Log Out</a></li>
+                        </ul> 
+                    </div>
                 </div>
             </div>
         </div>
