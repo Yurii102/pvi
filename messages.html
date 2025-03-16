@@ -4,27 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
     <title>Students</title>
-    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="./styles/header.css">
+    <link rel="stylesheet" href="./styles/navigation.css">
+    <link rel="stylesheet" href="./styles/table.css">
+    <link rel="stylesheet" href="./styles/mainContent.css">
 </head>
 <body>
     <a class="skipmain" href="#header" target="_self"><h1>Student Managment</h1></a>
     
     <header id="header">
         <div class="headerBack">
-            <a href="students.html" ><h1 class="logo">CMS</h1></a>
+            <a href="./students.html" ><h1 class="logo">CMS</h1></a>
             
             <div class="user-info">
                 <!-- Сповіщення -->
                 <div class="bell" id="bell">
                     <div>
-                        <img src="icon\bell.png" alt="Повідомлення" class="icon-bell" id="bellIcon">
+                        <img src="./source/bell.png" alt="Повідомлення" class="icon-bell" id="bellIcon">
                         <span class="notification-dot" id="notificationDot"></span>
                     </div>
 
                     <div class="notification-popup" id="notificationPopup">
                         <div class="notification-item">
                             <div class="user-info-notification">
-                                <img src="icon\user.png" alt="Avatar">
+                                <img src="./source/user.png" alt="Avatar">
                                 <strong>Студент 1</strong>
                             </div>
                             
@@ -34,7 +37,7 @@
                         </div>
                         <div class="notification-item">
                             <div class="user-info-notification">
-                                <img src="icon\user.png" alt="Avatar">
+                                <img src="./source/user.png" alt="Avatar">
                                 <strong>Студент 2</strong>
                             </div>
 
@@ -44,7 +47,7 @@
                         </div>
                         <div class="notification-item">
                             <div class="user-info-notification">
-                                <img src="icon\user.png" alt="Avatar">
+                                <img src="./source/user.png" alt="Avatar">
                                 <strong>Студент 3</strong>
                             </div>
 
@@ -57,7 +60,7 @@
 
                 <!-- Користувач -->
                 <div class="user" id="user">
-                    <img src="icon\user.png" alt="Ім'я користувача" class="icon">
+                    <img src="./source/user.png" alt="Ім'я користувача" class="icon">
                     <span class="user-name">Yurii Surniak</span>
 
                     <div class="profile-popup" id="profilePopup">
@@ -71,7 +74,17 @@
         </div>
     </header>
     
+    <main>
+        <aside>
+            <nav class="sidebar">
+                <a href="./dashboard.html" id="dashboard-link">Dashboard</a>
+                <a href="./students.html" id="students-link">Students</a>
+                <a href="./tasks.html" id="tasks-link">Tasks</a>
+            </nav>
+        </aside>
+    </main>
     <!-- Підключення скрипта -->
-    <script src="script.js"></script>
+    <script src="./scripts/header.js"></script>
+    <script src="./scripts/navigation.js"></script>
 </body>
 </html>

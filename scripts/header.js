@@ -9,7 +9,7 @@ let clickTimer;
 bell.addEventListener('click', () => {
     clearTimeout(clickTimer); 
     clickTimer = setTimeout(() => {
-        window.open('messages.html', '_blank');
+        window.open('./messages.html', '_blank');
         notificationDot.style.display = 'none';
     }, 300);
 });
