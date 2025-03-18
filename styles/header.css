@@ -11,16 +11,19 @@
     overflow: hidden;
 }
 
-/*Стиль для header*/ 
 .headerBack {
-    
+    position: fixed;
     background-color: #bbbbbb;
     display: flex; 
     flex-direction: row;
     justify-content: space-between;
-    height: 42px;
+    height: 52px;
     padding: 5px 20px;
-
+    width: 100%; 
+    top: 0; 
+    left: 0; 
+    z-index: 1000; 
+    box-sizing: border-box; 
 }
 
 .headerBack a {
@@ -29,7 +32,6 @@
     align-items: center;
 }
 
-/*Стиль для logo(CMS)*/
 .logo {
     color: rgb(255, 255, 255);
     font-size: 32px;
@@ -43,7 +45,6 @@
     cursor: pointer;
 }
 
-/*Стиль для bell*/
 .bell {
     position: relative;
     cursor: pointer; 
@@ -67,14 +68,12 @@
     display: block;
 }
 
-/*Стиль для user*/
 .user-info {
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-/*Стиль для прихованого вікна повідомлень*/
 .notification-popup {
     position: absolute;
     top: 35px;
@@ -115,7 +114,6 @@
     padding: 0 5px 5px 5px;
 }
 
-/*Стиль для rectangle*/
 .rectangle {
     position: relative;
     background: #ccc;

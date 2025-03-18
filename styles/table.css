@@ -1,0 +1,88 @@
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 10px; 
+}
+
+.students-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.students-table th, .students-table td {
+    border: 1px solid #000;
+    padding: 8px;
+}
+
+.students-table th {
+    background-color: #f8f8f8;
+    font-weight: bold;
+}
+
+.students-table tr td:nth-child(2), 
+.students-table tr td:nth-child(3), 
+.students-table tr td:nth-child(5) {
+    font-weight: bold;
+}
+
+.status {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    border: 1px solid black;
+}
+
+.online {
+    background-color: green;
+}
+
+.offline {
+    background-color: lightgray;
+}
+
+.edit-btn, .delete-btn {
+    border: 1px solid black;
+    background: white;
+    padding: 4px 6px;
+    cursor: pointer;
+}
+
+.edit-btn:hover {
+    background-color: #ddd;
+}
+
+.delete-btn:hover {
+    background-color: #ffb3b3;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 15px;
+}
+
+.page-btn {
+    border: 1px solid black;
+    background: white;
+    padding: 5px 10px;
+    margin: 0 3px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+}
+
+.page-btn:hover {
+    background-color: #ddd;
+}
+
+.page-btn.active {
+    background-color: black;
+    color: white;
+}
+
+.prev, .next {
+    font-weight: bold;
+}

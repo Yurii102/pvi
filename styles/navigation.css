@@ -1,9 +1,15 @@
 .sidebar {
-    width: 150px;
-    height: calc(100vh - 52px - 40px);
+    position: fixed;
+    width: 180px;
+    height: calc(100% - 52px); 
     background-color: #f8f8f8;
     padding: 20px;
     border-right: 1px solid #bbbbbb;
+    top: 52px; 
+    left: 0; 
+    z-index: 900; 
+    box-sizing: border-box; 
+    overflow-y: auto; 
 }
 
 .sidebar a {
