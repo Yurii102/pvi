@@ -1,5 +1,7 @@
 const links = document.querySelectorAll(".sidebar a"); 
-let currentPath = window.location.pathname.split("/").pop(); 
+let currentPath = window.location.pathname.split("/").pop();
+
+console.log(currentPath);
 
 // Якщо поточний шлях порожній, то це index.html
 if (!currentPath) {
