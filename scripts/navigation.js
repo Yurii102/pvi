@@ -1,7 +1,13 @@
 const links = document.querySelectorAll(".sidebar a"); 
-const currentPath = window.location.pathname.split("/").pop(); 
+let currentPath = window.location.pathname.split("/").pop(); 
+
+// Якщо поточний шлях порожній, то це index.html
+if (!currentPath) {
+    currentPath = "index.html";
+}
+
 links.forEach(link => {
-    if (link.getAttribute("href") === `./${currentPath}`) {
+    if (link.getAttribute("href") === `./${currentPath}` || link.getAttribute("href") === currentPath) {
         link.classList.add("active"); 
     }
 });
