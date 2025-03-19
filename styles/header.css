@@ -13,7 +13,7 @@
 
 .headerBack {
     position: fixed;
-    background-color: #bbbbbb;
+    background-color: #333;
     display: flex; 
     flex-direction: row;
     justify-content: space-between;

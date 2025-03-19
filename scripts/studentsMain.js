@@ -94,7 +94,7 @@ function saveStudent() {
     } else {
         const row = document.createElement("tr");
         row.innerHTML = `
-            <td><input type="checkbox"></td>
+            <td><input type="checkbox" aria-label="checkbox items"></td>
             <td><strong>${group}</strong></td>
             <td><strong>${firstName} ${lastName}</strong></td>
             <td>${gender[0]}</td>
