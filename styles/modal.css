@@ -51,13 +51,13 @@
     display: flex;
     border-bottom: 1px solid var(--color-accent);
     width: calc(100% + 40px); 
-    margin: -20px -20px 10px -20px; 
-    padding: 20px 20px 10px 20px; 
+    margin: -20px -20px 5px -20px;  /* Reduced bottom margin from 10px to 5px */
+    padding: 15px 20px 8px 20px;    /* Reduced vertical padding */
     justify-content: space-between;
     align-items: center;
     font-size: 20px;
     font-weight: bold;
-    padding-bottom: 10px;
+    padding-bottom: 8px;            /* Reduced from 10px to 8px */
     width: 100%; 
     color: var(--color-dark);
 }
@@ -72,7 +72,7 @@
 
 .modal-body label {
     display: block;
-    margin-top: 10px;
+    margin-top: 3px;                /* Reduced from 5px to 3px */
     font-size: 14px;
     color: var(--color-dark);
 }
@@ -80,8 +80,8 @@
 .modal-body input, 
 .modal-body select {
     width: calc(100% - 0px); 
-    padding: 8px;
-    margin-top: 5px;
+    padding: 6px;                   /* Reduced from 8px to 6px */
+    margin-top: 3px;                /* Reduced from 5px to 3px */
     border: 1px solid var(--color-gray-dark);
     border-radius: 5px;
     display: block; 
@@ -129,4 +129,123 @@
 
 .create-btn:hover {
     background: #d44718;
+}
+
+/* Validation styles */
+.error-input {
+    border: 1px solid var(--color-accent) !important;
+}
+
+.error-message {
+    color: var(--color-accent);
+    font-size: 10px;
+    margin-top: 1px;                /* Reduced from 2px to 1px */
+    display: none;
+    font-style: italic;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.validation-options {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;               /* Reduced from 15px to 10px */
+    font-size: 13px;                /* Reduced from 14px to 13px */
+    color: var(--color-gray-dark);
+    border-top: 1px solid var(--color-gray-light);
+    padding-top: 8px;               /* Reduced from 10px to 8px */
+}
+
+.validation-checkboxes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    border-top: 1px solid var(--color-gray-light);
+    padding-top: 8px;
+}
+
+.validation-checkboxes > div {
+    display: flex;
+    align-items: center;
+}
+
+.validation-options input {
+    width: auto !important;
+    margin-right: 5px !important;
+    margin-top: 0 !important;
+    display: inline-block !important;
+}
+
+.validation-options label {
+    display: inline-block !important;
+    margin-top: 0 !important;
+    margin-right: 15px !important;
+}
+
+/* Form field container to properly position error messages */
+.form-field {
+    margin-bottom: 8px;             /* Reduced from 15px to 8px */
+    position: relative;
+}
+
+/* Enhanced Validation styles - clean up duplicated styles */
+.validation-options {
+    margin-top: 10px;               /* Reduced from 15px to 10px */
+    font-size: 13px;                /* Reduced from 14px to 13px */
+    color: var(--color-gray-dark);
+    border-top: 1px solid var(--color-gray-light);
+    padding-top: 8px;               /* Reduced from 10px to 8px */
+}
+
+.validation-method {
+    margin-bottom: 10px;
+}
+
+.validation-method p {
+    margin: 0;
+    font-weight: bold;
+}
+
+.validation-method div {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.validation-options input[type="radio"],
+.validation-options input[type="checkbox"] {
+    width: auto !important;
+    margin-right: 5px !important;
+    margin-top: 0 !important;
+    display: inline-block !important;
+    vertical-align: middle;
+}
+
+.validation-options label {
+    display: inline-block !important;
+    margin-top: 0 !important;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+/* HTML validation error messages */
+input:invalid,
+select:invalid {
+    border: 1px solid var(--color-accent);
+    background-color: rgba(235, 94, 40, 0.05);
+}
+
+/* Add valid field indicator */
+.form-field.valid input,
+.form-field.valid select {
+    border: 1px solid #28a745;
+    background-color: rgba(40, 167, 69, 0.05);
+}
+
+.form-field.error input,
+.form-field.error select {
+    border: 1px solid var(--color-accent);
+    background-color: rgba(235, 94, 40, 0.05);
 }

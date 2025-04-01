@@ -161,33 +161,59 @@
                 <span class="close" id="close-btn">&times;</span>
             </div>
             <div class="modal-body">
-                <label>Group</label>
-                <select id="student-group">
-                    <option value="">Select Group</option>
-                    <option value="PZ-21">PZ-21</option>
-                    <option value="PZ-22">PZ-22</option>
-                    <option value="PZ-23">PZ-23</option>
-                    <option value="PZ-24">PZ-24</option>
-                    <option value="PZ-25">PZ-25</option>
-                    <option value="PZ-26">PZ-26</option>
-                    <option value="PZ-27">PZ-27</option>
-                </select>
-    
-                <label>First name</label>
-                <input type="text" id="first-name" aria-label="first-name">
-    
-                <label>Last name</label>
-                <input type="text" id="last-name" aria-label="last-name">
-    
-                <label>Gender</label>
-                <select id="gender">
-                    <option value="">Select Gender</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                </select>
-    
-                <label>Birthday</label>
-                <input type="date" id="birthday" aria-label="date-name">
+                <form id="student-form" novalidate>
+                    <div class="form-field">
+                        <label for="student-group">Group</label>
+                        <select id="student-group" name="student-group">
+                            <option value="">Select Group</option>
+                            <option value="PZ-21">PZ-21</option>
+                            <option value="PZ-22">PZ-22</option>
+                            <option value="PZ-23">PZ-23</option>
+                            <option value="PZ-24">PZ-24</option>
+                            <option value="PZ-25">PZ-25</option>
+                            <option value="PZ-26">PZ-26</option>
+                            <option value="PZ-27">PZ-27</option>
+                        </select>
+                    </div>
+        
+                    <div class="form-field">
+                        <label for="first-name">First name</label>
+                        <input type="text" id="first-name" name="first-name" aria-label="first-name">
+                    </div>
+        
+                    <div class="form-field">
+                        <label for="last-name">Last name</label>
+                        <input type="text" id="last-name" name="last-name" aria-label="last-name">
+                    </div>
+        
+                    <div class="form-field">
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="gender">
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                    </div>
+        
+                    <div class="form-field">
+                        <label for="birthday">Birthday</label>
+                        <input type="date" id="birthday" name="birthday" aria-label="date-name">
+                    </div>
+                    
+                    <div class="validation-options">
+                        <div class="validation-method">
+                            <p>Validation method:</p>
+                            <div>
+                                <input type="radio" id="html-validation" name="validation-method" value="html">
+                                <label for="html-validation">HTML5</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="js-validation" name="validation-method" value="javascript" checked>
+                                <label for="js-validation">JavaScript</label>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
             <div class="modal-footer">
                 <button class="cancel-btn" id="cancel-btn">Cancel</button>
@@ -214,6 +240,7 @@
 
     <script src="./scripts/header.js"></script>
     <script src="./scripts/navigation.js"></script>
+    <script src="./scripts/validation.js"></script>
     <script src="./scripts/studentsMain.js"></script>
 </body>
 </html>

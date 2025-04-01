@@ -121,16 +121,21 @@ function closeModal() {
 }
 
 function saveStudent() {
+    // Validate form before saving
+    if (!validateForm()) {
+        // If using HTML validation and form is invalid, trigger native browser validation
+        if (document.getElementById("html-validation").checked) {
+            const form = document.querySelector("#student-form");
+            form.reportValidity();
+        }
+        return; // Don't save if validation fails
+    }
+
     const group = document.getElementById("student-group").value;
     const firstName = document.getElementById("first-name").value;
     const lastName = document.getElementById("last-name").value;
     const gender = document.getElementById("gender").value;
     const birthday = document.getElementById("birthday").value;
-
-    if (!group || !firstName || !lastName || !gender || !birthday) {
-        alert("Будь ласка, заповніть всі поля!");
-        return;
-    }
 
     const formattedDate = formatDate(birthday);
     
@@ -152,6 +157,7 @@ function saveStudent() {
         };
         
         console.log(`Оновлено студента з ID: ${studentId}`);
+        console.log('Оновлений запис:', JSON.stringify(studentsData[studentId], null, 2));
     } else {
         const studentId = generateUniqueId();
         const row = document.createElement("tr");
@@ -183,11 +189,15 @@ function saveStudent() {
         };
         
         console.log(`Створено нового студента з ID: ${studentId}`);
+        console.log('Новий запис:', JSON.stringify(studentsData[studentId], null, 2));
     }
     
     updateRowActions();
     closeModal();
-    console.log('Дані студентів:', studentsData);
+    
+    // Log complete student data as formatted JSON
+    console.log('Всі дані студентів:');
+    console.log(JSON.stringify(studentsData, null, 2));
 }
 
 // Допоміжна функція для форматування дати
@@ -304,6 +314,7 @@ function closeDeleteModal() {
 
 function deleteStudent() {
     const selectedRows = document.querySelectorAll("tbody input[type='checkbox']:checked");
+    const deletedStudents = [];
     
     if (selectedRows.length > 0) {
         selectedRows.forEach(checkbox => {
@@ -311,6 +322,7 @@ function deleteStudent() {
             const studentId = row.dataset.studentId;
             
             if (studentsData[studentId]) {
+                deletedStudents.push({...studentsData[studentId]});
                 console.log(`Видалено студента ${studentsData[studentId].firstName} ${studentsData[studentId].lastName} з ID: ${studentId}`);
                 delete studentsData[studentId];
             }
@@ -321,12 +333,22 @@ function deleteStudent() {
         const studentId = studentRowToDelete.dataset.studentId;
         
         if (studentsData[studentId]) {
+            deletedStudents.push({...studentsData[studentId]});
             console.log(`Видалено студента ${studentsData[studentId].firstName} ${studentsData[studentId].lastName} з ID: ${studentId}`);
             delete studentsData[studentId];
         }
         
         studentRowToDelete.remove();
     }
+    
+    // Log deleted data
+    if (deletedStudents.length > 0) {
+        console.log('Видалені записи:', JSON.stringify(deletedStudents, null, 2));
+    }
+    
+    // Log updated data after deletion
+    console.log('Оновлені дані студентів:');
+    console.log(JSON.stringify(studentsData, null, 2));
     
     closeDeleteModal();
     updateRowActions();
@@ -347,8 +369,10 @@ document.querySelector("tbody").addEventListener("click", function (event) {
 // Ініціалізуємо початкові рядки після завантаження сторінки
 window.addEventListener('DOMContentLoaded', function() {
     initializeTableRows();
+    initValidation(); // Initialize form validation
     console.log('Таблицю студентів ініціалізовано з ID');
-    console.log('Дані студентів:', studentsData);
+    console.log('Початкові дані студентів:');
+    console.log(JSON.stringify(studentsData, null, 2));
 });
 
 
