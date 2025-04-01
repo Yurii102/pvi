@@ -1,32 +1,55 @@
+:root {
+    --color-light: #FFFCF2;
+    --color-gray-light: #CCC5B9;
+    --color-gray-dark: #403D39;
+    --color-dark: #252422;
+    --color-accent: #EB5E28;
+}
+
 /* Стилі для модального вікна */
 .modal {
-    display: none;
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%) scale(0.7);
     width: 450px;
-    background: white;
+    background: var(--color-light);
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 1001;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
+}
+
+.modal.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translate(-50%, -50%) scale(1);
 }
 
 .modal-overlay {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(37, 36, 34, 0.5);
     z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.modal-overlay.show {
+    opacity: 1;
+    visibility: visible;
 }
 
 .modal-header {
     display: flex;
-    border-bottom: 1px solid #888;
+    border-bottom: 1px solid var(--color-accent);
     width: calc(100% + 40px); 
     margin: -20px -20px 10px -20px; 
     padding: 20px 20px 10px 20px; 
@@ -36,6 +59,7 @@
     font-weight: bold;
     padding-bottom: 10px;
     width: 100%; 
+    color: var(--color-dark);
 }
 
 .close-btn {
@@ -43,12 +67,14 @@
     background: none;
     border: none;
     font-size: 18px;
+    color: var(--color-gray-dark);
 }
 
 .modal-body label {
     display: block;
     margin-top: 10px;
     font-size: 14px;
+    color: var(--color-dark);
 }
 
 .modal-body input, 
@@ -56,10 +82,12 @@
     width: calc(100% - 0px); 
     padding: 8px;
     margin-top: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--color-gray-dark);
     border-radius: 5px;
     display: block; 
     box-sizing: border-box; 
+    background-color: var(--color-light);
+    color: var(--color-dark);
 }
 
 /* Кнопки */
@@ -70,7 +98,7 @@
     margin-top: 20px;
     padding-top: 10px;
     width: 100%; 
-    border-top: 1px solid #888;
+    border-top: 1px solid var(--color-accent);
     position: relative;
     left: -20px;
     width: calc(100%); 
@@ -85,18 +113,20 @@
 }
 
 .cancel-btn {
-    background: #ccc;
+    background: var(--color-gray-light);
+    color: var(--color-dark);
 }
 
 .create-btn {
-    background: #007BFF;
-    color: white;
+    background: var(--color-accent);
+    color: var(--color-light);
 }
 
 .cancel-btn:hover {
-    background: #b0b0b0;
+    background: var(--color-gray-dark);
+    color: var(--color-light);
 }
 
 .create-btn:hover {
-    background: #0056b3;
+    background: #d44718;
 }

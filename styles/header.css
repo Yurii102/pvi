@@ -1,3 +1,11 @@
+:root {
+    --color-light: #FFFCF2;
+    --color-gray-light: #CCC5B9;
+    --color-gray-dark: #403D39;
+    --color-dark: #252422;
+    --color-accent: #EB5E28;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -13,7 +21,7 @@
 
 .headerBack {
     position: fixed;
-    background-color: #333;
+    background-color: var(--color-dark);
     display: flex; 
     flex-direction: row;
     justify-content: space-between;
@@ -33,10 +41,10 @@
 }
 
 .logo {
-    color: rgb(255, 255, 255);
+    color: var(--color-accent);
     font-size: 32px;
     font-weight: bold;
-    
+    text-shadow: 0 0 15px rgba(235, 94, 40, 0.7);
 }
 
 .icon {
@@ -56,9 +64,23 @@
     right: 0;
     width: 8px;
     height: 8px;
-    background-color: red;
+    background-color: var(--color-accent);
     border-radius: 50%;
     display: none;
+    /* Add animation when displayed */
+    animation: none;
+}
+
+
+.notification-dot[style*="display: block"] {
+    animation: breathe 1.5s infinite ease-in-out;
+}
+
+
+@keyframes breathe {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.5); opacity: 0.7; }
+    100% { transform: scale(1); opacity: 1; }
 }
 
 .icon-bell {
@@ -79,11 +101,14 @@
     top: 35px;
     right: 0;
     width: 350px;
-    background: #fff;
+    background: var(--color-light);
     max-width: 400px;
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
     z-index: 10;
 }
 
@@ -91,7 +116,7 @@
     display: flex;
     align-items: center;
     padding: 10px;
-    border-bottom: 1px solid #d1d1d1;
+    border-bottom: 1px solid var(--color-gray-light);
 }
 
 .notification-item img {
@@ -116,11 +141,11 @@
 
 .rectangle {
     position: relative;
-    background: #ccc;
+    background: var(--color-gray-light);
     max-width: 400px;
     width: 220px;
     height: 75px;
-    border: 1px solid #888;
+    border: 1px solid var(--color-gray-dark);
     box-sizing: border-box;
     overflow: visible;
     text-overflow: ellipsis;
@@ -131,7 +156,7 @@
     padding: 10px;
 }
 
-/* Стрілка */
+/* Стрілка сповіщення */
 .rectangle::before {
     content: "";
     position: absolute;
@@ -140,7 +165,7 @@
     transform: translateY(-50%); 
     border-width: 8px; 
     border-style: solid;
-    border-color: transparent #ccc transparent transparent; 
+    border-color: transparent var(--color-gray-light) transparent transparent; 
 }
 
 .rectangle::after {
@@ -151,12 +176,12 @@
     transform: translateY(-50%);
     border-width: 9px;
     border-style: solid;
-    border-color: transparent #888 transparent transparent;
+    border-color: transparent var(--color-gray-dark) transparent transparent;
 }
 
 /* Обрізання тексту */
 .text-content {
-    color: rgba(0, 0, 0, 0.575);
+    color: var(--color-gray-dark);
     display: block; 
     width: 100%;
     overflow: hidden;
@@ -183,7 +208,7 @@
 }
 
 .user-name {
-    color: rgb(255, 255, 255);
+    color: var(--color-light);
     font-size: 16px;
 }
 
@@ -192,11 +217,14 @@
     top: 45px;
     right: 10px;
     width: 140px;
-    background: #fff;
+    background: var(--color-light);
     max-width: 400px;
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
     z-index: 10;
 }
 
@@ -209,21 +237,27 @@
 .popup-menu li {
     padding: 12px 20px;
     transition: background 0.3s ease;
-    border-bottom: 1px solid #d1d1d1;
+    border-bottom: 1px solid var(--color-gray-light);
 }
 
 .popup-menu li a {
     text-decoration: none;
-    color: #333;
+    color: var(--color-gray-dark);
     font-size: 16px;
     display: block;
-    
 }
 
 .popup-menu li:hover {
-    background: #f0f0f0;
+    background: var(--color-gray-light);
     border-radius: 10px;
+}
 
+/* Add these new classes to handle the visible state */
+.notification-popup.visible,
+.profile-popup.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
 }
 
 

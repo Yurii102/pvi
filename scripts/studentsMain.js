@@ -25,8 +25,13 @@ function openAddModal() {
     modalTitle.textContent = "Add student";
     submitButton.textContent = "Create";
     
-    modal.style.display = "block";
     overlay.style.display = "block";
+    modal.style.display = "block";
+    
+    // Trigger reflow to ensure transition works
+    modal.offsetWidth;
+    overlay.classList.add('show');
+    modal.classList.add('show');
 }
 
 function openEditModal(row) {
@@ -63,13 +68,23 @@ function openEditModal(row) {
     modalTitle.textContent = "Edit student";
     submitButton.textContent = "Save";
     
-    modal.style.display = "block";
     overlay.style.display = "block";
+    modal.style.display = "block";
+    
+    // Trigger reflow to ensure transition works
+    modal.offsetWidth;
+    overlay.classList.add('show');
+    modal.classList.add('show');
 }
 
 function closeModal() {
-    modal.style.display = "none";
-    overlay.style.display = "none";
+    overlay.classList.remove('show');
+    modal.classList.remove('show');
+    
+    setTimeout(() => {
+        modal.style.display = "none";
+        overlay.style.display = "none";
+    }, 300); // Match this timing with CSS transition duration
 }
 
 function saveStudent() {
@@ -201,13 +216,23 @@ function openDeleteModal(row, studentName) {
         deleteMessage.textContent = `Are you sure you want to delete ${selectedCount} students?`;
     }
     
-    deleteModal.style.display = "block";
     deleteOverlay.style.display = "block";
+    deleteModal.style.display = "block";
+    
+    // Trigger reflow to ensure transition works
+    deleteModal.offsetWidth;
+    deleteOverlay.classList.add('show');
+    deleteModal.classList.add('show');
 }
 
 function closeDeleteModal() {
-    deleteModal.style.display = "none";
-    deleteOverlay.style.display = "none";
+    deleteOverlay.classList.remove('show');
+    deleteModal.classList.remove('show');
+    
+    setTimeout(() => {
+        deleteModal.style.display = "none";
+        deleteOverlay.style.display = "none";
+    }, 300); // Match this timing with CSS transition duration
 }
 
 function deleteStudent() {

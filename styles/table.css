@@ -1,3 +1,11 @@
+:root {
+    --color-light: #FFFCF2;
+    --color-gray-light: #CCC5B9;
+    --color-gray-dark: #403D39;
+    --color-dark: #252422;
+    --color-accent: #EB5E28;
+}
+
 .table-container {
     width: 100%;
     overflow-x: auto;
@@ -11,12 +19,13 @@
 }
 
 .students-table th, .students-table td {
-    border: 1px solid #000;
+    border: 1px solid var(--color-gray-dark);
     padding: 8px;
 }
 
 .students-table th {
-    background-color: #f8f8f8;
+    background-color: var(--color-dark);
+    color: var(--color-light);
     font-weight: bold;
 }
 
@@ -31,30 +40,48 @@
     width: 12px;
     height: 12px;
     border-radius: 50%;
-    border: 1px solid black;
+    border: 1px solid var(--color-gray-dark);
 }
 
 .online {
-    background-color: green;
+    background-color: var(--color-accent);
+    box-shadow: 0 0 8px var(--color-accent);
 }
 
 .offline {
-    background-color: lightgray;
+    background-color: var(--color-gray-light);
+}
+
+/* Alternating row colors */
+.students-table tbody tr:nth-child(odd) {
+    background-color: var(--color-light);
+}
+
+.students-table tbody tr:nth-child(even) {
+    background-color: rgba(204, 197, 185, 0.2); /* Lighter version of --color-gray-light */
+}
+
+.students-table tbody tr:hover {
+    background-color: rgba(235, 94, 40, 0.1); /* Light version of accent color */
+    transition: background-color 0.3s ease;
 }
 
 .edit-btn, .delete-btn {
-    border: 1px solid black;
-    background: white;
+    border: 1px solid var(--color-gray-dark);
+    background: var(--color-light);
     padding: 4px 6px;
     cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .edit-btn:hover {
-    background-color: #ddd;
+    background-color: var(--color-gray-light);
+    transform: scale(1.05);
 }
 
 .delete-btn:hover {
-    background-color: #ffb3b3;
+    background-color: #ff9b85; /* Lighter version of accent color */
+    transform: scale(1.05);
 }
 
 .pagination-container {
@@ -65,26 +92,33 @@
 }
 
 .page-btn {
-    border: 1px solid black;
-    background: white;
+    border: 1px solid var(--color-gray-dark);
+    background: var(--color-light);
     padding: 5px 10px;
     margin: 0 3px;
     cursor: pointer;
     font-size: 16px;
-    transition: background 0.3s ease;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
 .page-btn:hover {
-    background-color: #ddd;
+    background-color: var(--color-gray-light);
+    transform: translateY(-2px);
 }
 
 .page-btn.active {
-    background-color: black;
-    color: white;
+    background-color: var(--color-dark);
+    color: var(--color-light);
+    border-color: var(--color-accent);
+    box-shadow: 0 2px 4px rgba(235, 94, 40, 0.3);
 }
 
 .prev, .next {
     font-weight: bold;
+}
+
+.prev:hover, .next:hover {
+    color: var(--color-accent);
 }
 
 .visually-hidden {

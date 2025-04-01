@@ -1,3 +1,14 @@
+:root {
+    --color-light: #FFFCF2;
+    --color-gray-light: #CCC5B9;
+    --color-gray-dark: #403D39;
+    --color-dark: #252422;
+    --color-accent: #EB5E28;
+}
+
+body{
+    background-color: var(--color-light);
+}
 main {
     display: flex;
     margin-top: 52px; 
@@ -19,11 +30,12 @@ main {
     font-weight: bold;
     margin-bottom: 10px;
     margin-left: 5px;
+    color: var(--color-dark);
 }
 
 .add-btn {
-    background-color: #414141;
-    color: white;
+    background-color: var(--color-dark);
+    color: var(--color-light);
     border: none;
     padding: 6px 11px;
     font-size: 18px;
@@ -31,11 +43,13 @@ main {
     border-radius: 35%;
     align-self: flex-start; 
     margin-top: 30px; 
+    transition: all 0.3s ease;
 }
 
 .add-btn:hover {
-    background-color: #ddd; 
-    color: #333; 
+    background-color: var(--color-accent); 
+    color: var(--color-light);
+    transform: scale(1.05);
 }
 
 @media screen and (max-width: 768px) {
@@ -50,7 +64,7 @@ main {
         overflow-x: auto; 
         max-width: 100%; 
         margin: 0 auto; 
-        border: 1px solid #000; 
+        border: 1px solid var(--color-gray-dark); 
     }
 
     .students-table {
@@ -91,22 +105,29 @@ main {
         width: 90%; 
         max-width: 240px; 
         padding: 10px; 
+        background-color: var(--color-light);
+        border: 1px solid var(--color-gray-light);
     }
 
     .modal-header {
         font-size: 16px; 
         padding: 8px; 
         margin: -10px -10px 8px -10px; 
+        color: var(--color-light);
     }
 
     .modal-body label {
-        font-size: 12px; 
+        font-size: 12px;
+        color: var(--color-gray-dark);
     }
 
     .modal-body input, 
     .modal-body select {
         padding: 5px; 
         font-size: 13px; 
+        border: 1px solid var(--color-accent);
+        background-color: var(--color-light);
+        color: var(--color-gray-dark);
     }
 
     .modal-footer {
@@ -118,5 +139,13 @@ main {
     .modal-footer button {
         width: 100%; 
         padding: 8px;
+        background-color: var(--color-dark);
+        color: var(--color-light);
+        border: none;
+        cursor: pointer;
+    }
+    
+    .modal-footer button:hover {
+        background-color: var(--color-accent);
     }
 }

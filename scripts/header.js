@@ -20,23 +20,27 @@ bellIcon.addEventListener('dblclick', () => {
     
     bellIcon.addEventListener('animationend', () => {
         notificationDot.style.display = 'block';
+        setTimeout(() => {
+        }, 10);
         
         bellIcon.classList.remove('bell-animation');
     }, { once: true });
 });
 
+// Updated event listeners for bell notifications
 bell.addEventListener('mouseover', () => {
-    notificationPopup.style.display = 'block';
+    notificationPopup.classList.add('visible');
 });
 
 bell.addEventListener('mouseout', () => {
-    notificationPopup.style.display = 'none';
+    notificationPopup.classList.remove('visible');
 });
 
+// Updated event listeners for profile popup
 profile.addEventListener('mouseover', () => {
-    profilePopup.style.display = 'block';
+    profilePopup.classList.add('visible');
 });
 
 profile.addEventListener('mouseout', () => {
-    profilePopup.style.display = 'none';
+    profilePopup.classList.remove('visible');
 });
