@@ -13,15 +13,25 @@ const urlsToCache = [
     '/scripts/navigation.js',
     '/scripts/validation.js',
     '/scripts/studentsMain.js',
-    '/source/bell.png',
-    '/source/user.png',
-    '/manifest.json',
     '/source/icon-man144.png',
     '/source/icon-man192.png',
     '/source/icon-man512.png',
     '/source/screenshot1.jpg',
-    '/source/screenshot2.jpg'
+    '/source/screenshot2.jpg',
+    '/source/bell.png',
+    '/source/user.png',
+    '/manifest.json'
 ];
+
+self.addEventListener('install', event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(cache => {
+        console.log('Cache opened');
+        return cache.addAll(urlsToCache);
+      })
+  );
+});
 
 // Install event - caches assets
 self.addEventListener('install', event => {

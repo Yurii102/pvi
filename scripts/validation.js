@@ -1,4 +1,4 @@
-// Validation configuration
+
 const validations = {
     'student-group': {
         regex: /^[A-Za-z]{2}-\d{2}$/,
@@ -16,16 +16,13 @@ const validations = {
         message: "Please select a gender"
     },
     'birthday': {
-        message: "Please enter a valid birthday (age should be between 16 and 100 years)"
+        message: "Please enter a valid birthday (age should be between 15 and 80 years)"
     }
 };
 
-// Track which fields have been interacted with
+
 const touchedFields = new Set();
 
-/**
- * Validates if the birthday date is within the acceptable age range (16-100)
- */
 function validateBirthday(date) {
     const today = new Date();
     const birthDate = new Date(date);
@@ -44,12 +41,9 @@ function validateBirthday(date) {
         age--;
     }
     
-    return age >= 16 && age <= 100;
+    return age >= 15 && age <= 80;
 }
 
-/**
- * Validates a specific form field and displays validation results
- */
 function validateField(field, skipVisuals = false) {
     const fieldName = field.id;
     const formField = field.closest('.form-field');
@@ -86,9 +80,6 @@ function validateField(field, skipVisuals = false) {
     return isValid;
 }
 
-/**
- * Shows error message for a field
- */
 function showError(input, message) {
     const formField = input.closest('.form-field');
     let errorElement = formField.querySelector('.error-message');
@@ -106,9 +97,6 @@ function showError(input, message) {
     errorElement.style.display = 'block';
 }
 
-/**
- * Clears error message for a field
- */
 function clearError(input) {
     const formField = input.closest('.form-field');
     const errorElement = formField.querySelector('.error-message');
@@ -123,23 +111,17 @@ function clearError(input) {
     }
 }
 
-/**
- * Validates the entire form
- */
 function validateForm() {
     const validationMethod = getValidationMethod();
     
-    // If using HTML validation, let the browser handle it
     if (validationMethod === "html") {
         const form = document.querySelector("#student-form");
         return form.checkValidity();
     }
     
-    // For JS validation, mark all fields as touched
     const fields = document.querySelectorAll('#student-form input:not([type="radio"]), #student-form select');
     fields.forEach(field => touchedFields.add(field.id));
     
-    // Validate each field
     let isFormValid = true;
     fields.forEach(field => {
         if (!validateField(field)) {
@@ -150,16 +132,10 @@ function validateForm() {
     return isFormValid;
 }
 
-/**
- * Get the selected validation method
- */
 function getValidationMethod() {
     return document.getElementById("html-validation").checked ? "html" : "javascript";
 }
 
-/**
- * Setup date validation constraints
- */
 function setupDateValidation() {
     const birthdayField = document.getElementById('birthday');
     const today = new Date();
@@ -174,9 +150,6 @@ function setupDateValidation() {
     birthdayField.min = minDate.toISOString().split('T')[0];
 }
 
-/**
- * Toggle HTML validation attributes
- */
 function toggleHTMLValidation(enabled) {
     const form = document.querySelector("#student-form");
     const inputs = form.querySelectorAll('input:not([type="radio"]), select');
@@ -185,7 +158,6 @@ function toggleHTMLValidation(enabled) {
     
     inputs.forEach(input => {
         if (enabled) {
-            // Enable HTML validation
             switch(input.id) {
                 case 'student-group':
                     input.setAttribute('required', '');
@@ -201,43 +173,35 @@ function toggleHTMLValidation(enabled) {
                     break;
                 case 'birthday':
                     input.setAttribute('required', '');
-                    // Date constraints already set in setupDateValidation
                     break;
             }
         } else {
             // Disable HTML validation
             input.removeAttribute('required');
             input.removeAttribute('pattern');
-            // Don't remove min/max for date field - we keep those for the UI
         }
     });
     
-    // Reset all visual validation indicators
     touchedFields.clear();
     inputs.forEach(field => {
         clearError(field);
     });
 }
 
-/**
- * Initialize validation
- */
+
 function initValidation() {
     const validationMethods = document.querySelectorAll('input[name="validation-method"]');
     const form = document.querySelector("#student-form");
     const formFields = form.querySelectorAll('input:not([type="radio"]), select');
     
-    // Setup date validation constraints
     setupDateValidation();
     
-    // Set up validation method toggle handlers
     validationMethods.forEach(method => {
         method.addEventListener('change', function() {
             toggleHTMLValidation(this.id === 'html-validation');
         });
     });
     
-    // Set up field validation handlers
     formFields.forEach(field => {
         field.addEventListener('input', function() {
             touchedFields.add(field.id);
@@ -254,7 +218,6 @@ function initValidation() {
         });
     });
     
-    // Initialize validation method (default to JS)
     document.getElementById('js-validation').checked = true;
     toggleHTMLValidation(false);
 }

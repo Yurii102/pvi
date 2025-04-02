@@ -14,6 +14,20 @@
     <link rel="stylesheet" href="./styles/modal.css">
 
     <link rel="manifest" href="/manifest.json">
+
+    <script>
+        if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('service-worker.js')
+                        .then((registration) => {
+                            console.log('Service Worker зареєстровано:', registration);
+                        })
+                        .catch((error) => {
+                            console.log('Помилка реєстрації Service Worker:', error);
+                        });
+                });
+            }
+    </script>
 </head>
   
 <body>

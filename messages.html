@@ -10,6 +10,22 @@
     <link rel="stylesheet" href="./styles/table.css">
     <link rel="stylesheet" href="./styles/studentsMain.css">
     <link rel="stylesheet" href="./styles/modal.css">
+
+    <link rel="manifest" href="/manifest.json">
+
+    <script>
+        if ('serviceWorker' in navigator) {
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('service-worker.js')
+                        .then((registration) => {
+                            console.log('Service Worker зареєстровано:', registration);
+                        })
+                        .catch((error) => {
+                            console.log('Помилка реєстрації Service Worker:', error);
+                        });
+                });
+            }
+    </script>
 </head>
 <body>
     <a class="skipmain" href="#header" target="_self"><h1>Student Managment</h1></a>
