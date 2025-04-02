@@ -375,5 +375,15 @@ window.addEventListener('DOMContentLoaded', function() {
     console.log(JSON.stringify(studentsData, null, 2));
 });
 
-
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('service-worker.js')
+        .then((registration) => {
+          console.log('Service Worker зареєстровано:', registration);
+        })
+        .catch((error) => {
+          console.log('Помилка реєстрації Service Worker:', error);
+        });
+    });
+  }
 
