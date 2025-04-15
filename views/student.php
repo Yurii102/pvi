@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="uk">
-  
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Зручний інтерфейс для роботи з даними.">
     <title>Students</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="./styles/header.css">
-    <link rel="stylesheet" href="./styles/navigation.css">
-    <link rel="stylesheet" href="./styles/table.css">
-    <link rel="stylesheet" href="./styles/studentsMain.css">
-    <link rel="stylesheet" href="./styles/modal.css">
+    <link rel="stylesheet" href="public/styles/header.css">
+    <link rel="stylesheet" href="public/styles/navigation.css">
+    <link rel="stylesheet" href="public/styles/table.css">
+    <link rel="stylesheet" href="public/styles/studentsMain.css">
+    <link rel="stylesheet" href="public/styles/modal.css">
 
-    <link rel="manifest" href="/manifest.json">
+    <link rel="manifest" href="public/manifest.json">
 
-    <script>
+    <!-- <script>
         if ('serviceWorker' in navigator) {
                 window.addEventListener('load', () => {
-                    navigator.serviceWorker.register('service-worker.js')
+                    navigator.serviceWorker.register('public/service-worker.js')
                         .then((registration) => {
                             console.log('Service Worker зареєстровано:', registration);
                         })
@@ -27,82 +27,26 @@
                         });
                 });
             }
-    </script>
+    </script> -->
 </head>
-  
+
 <body>
-    <a class="skipmain" href="#header" target="_self"><h1>Student Managment</h1></a>
-    
-    <header id="header">
-        <div class="headerBack">
-            <a href="./index.html" ><h1 class="logo">CMS</h1></a>
-            
-            <div class="user-info">
-                <div class="bell" id="bell">
-                    <div>
-                        <img src="./source/bell.png" alt="Повідомлення" class="icon-bell" id="bellIcon">
-                        <span class="notification-dot" id="notificationDot"></span>
-                    </div>
+    <a class="skipmain" href="#header" target="_self">
+        <h1>Student Managment</h1>
+    </a>
 
-                    <div class="notification-popup" id="notificationPopup">
-                        <div class="notification-item">
-                            <div class="user-info-notification">
-                                <img src="./source/user.png" alt="Avatar">
-                                <strong>Студент 1</strong>
-                            </div>
-                            
-                            <div class="rectangle">
-                                <p class="text-content">Ваше повідомлення тут.</p>
-                            </div>
-                        </div>
-                        <div class="notification-item">
-                            <div class="user-info-notification">
-                                <img src="./source/user.png" alt="Avatar">
-                                <strong>Студент 2</strong>
-                            </div>
-
-                            <div class="rectangle">
-                                <p class="text-content">Інше повідомлення тут.</p>
-                            </div>
-                        </div>
-                        <div class="notification-item">
-                            <div class="user-info-notification">
-                                <img src="./source/user.png" alt="Avatar">
-                                <strong>Студент 3</strong>
-                            </div>
-
-                            <div class="rectangle">
-                                <p class="text-content">Ще одне повідомлення тут.</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="user" id="user">
-                    <img src="./source/user.png" alt="Ім'я користувача" class="icon">
-                    <span class="user-name">Yurii Surniak</span>
-
-                    <div class="profile-popup" id="profilePopup">
-                        <ul class="popup-menu">
-                            <li><a href="#">Profile</a></li>
-                            <li><a href="#">Log Out</a></li>
-                        </ul> 
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
+    <?php include VIEWS . 'layouts/header.php'; ?>
 
     <main>
         <button class="burger-menu" id="burger-menu">
             <span class="material-icons">menu</span>
         </button>
-        
+
         <aside>
             <nav class="sidebar">
-                <a href="./dashboard.html" id="dashboard-link">Dashboard</a>
-                <a href="./index.html" id="students-link">Students</a>
-                <a href="./tasks.html" id="tasks-link">Tasks</a>
+                <a href="./dashboard.php" id="dashboard-link">Dashboard</a>
+                <a href="./index.php" id="students-link">Students</a>
+                <a href="./tasks.php" id="tasks-link">Tasks</a>
             </nav>
         </aside>
 
@@ -111,14 +55,14 @@
                 <h2>Students</h2>
                 <button id="add-btn" class="add-btn">+</button>
             </div>
-            
+
             <div class="table-container">
                 <table id="students-table" class="students-table">
                     <thead>
                         <tr>
                             <th scope="col">
                                 <span class="visually-hidden">Select All</span>
-                                <input aria-label="select-all" type="checkbox" id="select-all" >
+                                <input aria-label="select-all" type="checkbox" id="select-all">
                             </th>
                             <th>Group</th>
                             <th>Name</th>
@@ -191,17 +135,17 @@
                             <option value="PZ-27">PZ-27</option>
                         </select>
                     </div>
-        
+
                     <div class="form-field">
                         <label for="first-name">First name</label>
                         <input type="text" id="first-name" name="first-name" aria-label="first-name">
                     </div>
-        
+
                     <div class="form-field">
                         <label for="last-name">Last name</label>
                         <input type="text" id="last-name" name="last-name" aria-label="last-name">
                     </div>
-        
+
                     <div class="form-field">
                         <label for="gender">Gender</label>
                         <select id="gender" name="gender">
@@ -210,12 +154,12 @@
                             <option value="Female">Female</option>
                         </select>
                     </div>
-        
+
                     <div class="form-field">
                         <label for="birthday">Birthday</label>
                         <input type="date" id="birthday" name="birthday" aria-label="date-name">
                     </div>
-                    
+
                     <div class="validation-options">
                         <div class="validation-method">
                             <p>Validation method:</p>
@@ -254,9 +198,38 @@
         </div>
     </div>
 
-    <script src="./scripts/header.js"></script>
-    <script src="./scripts/navigation.js"></script>
-    <script src="./scripts/validation.js"></script>
-    <script src="./scripts/studentsMain.js"></script>
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Login to System</h2>
+                <span class="close" id="closeLoginModal">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="login-form" action="/studentApp/index.php?page=login" method="post">
+                    <div class="form-field">
+                        <label for="username">Username:</label>
+                        <input type="text" id="username" name="username" required>
+                        <div class="error-message" id="username-error">Please enter your username</div>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="password">Password:</label>
+                        <input type="password" id="password" name="password" required>
+                        <div class="error-message" id="password-error">Please enter your password</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="cancel-btn" id="login-cancel-btn">Cancel</button>
+                <button class="create-btn" id="login-submit-btn" type="submit" form="login-form">Login</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="public/scripts/header.js"></script>
+    <script src="public/scripts/navigation.js"></script>
+    <script src="public/scripts/validation.js"></script>
+    <script src="public/scripts/studentsMain.js"></script>
 </body>
+
 </html>

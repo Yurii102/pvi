@@ -249,3 +249,51 @@ select:invalid {
     border: 1px solid var(--color-accent);
     background-color: rgba(235, 94, 40, 0.05);
 }
+
+/* Login Modal Styles */
+#login-form .form-field {
+    margin-bottom: 15px;
+}
+
+#login-form label {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#login-form input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid var(--color-gray-dark);
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+#login-form input:focus {
+    border-color: var(--color-accent);
+    outline: none;
+    box-shadow: 0 0 3px rgba(235, 94, 40, 0.3);
+}
+
+#login-submit-btn {
+    background: var(--color-accent);
+    color: var(--color-light);
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#login-submit-btn:hover {
+    background: #d44718;
+}
+
+#login-cancel-btn {
+    background: var(--color-gray-light);
+    color: var(--color-dark);
+}
+
+#login-cancel-btn:hover {
+    background: var(--color-gray-dark);
+    color: var(--color-light);
+}

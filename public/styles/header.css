@@ -260,5 +260,58 @@
     transform: translateY(0);
 }
 
+/* Login button styling - more specific selector */
+.headerBack .user-info .LogIn,
+.LogIn {
+    background-color: var(--color-accent);
+    color: var(--color-light);
+    border: none;
+    border-radius: 8px;
+    padding: 8px 15px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.headerBack .user-info .LogIn:hover,
+.LogIn:hover {
+    background-color: #ff6f3d; /* Slightly lighter shade of the accent color */
+    transform: scale(1.05);
+    box-shadow: 0 0 10px rgba(235, 94, 40, 0.5);
+}
+
+.headerBack .user-info .LogIn:active,
+.LogIn:active {
+    transform: scale(0.98);
+}
+
+/* Login button styling - using ID and !important for debugging */
+#loginButton,
+button.LogIn {
+    background-color: var(--color-accent) !important;
+    color: var(--color-light) !important;
+    border: none !important;
+    border-radius: 8px !important;
+    padding: 8px 15px !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+    transition: background-color 0.3s ease, transform 0.2s ease !important;
+    display: inline-block !important;
+}
+
+#loginButton:hover,
+button.LogIn:hover {
+    background-color: #ff6f3d !important; 
+    transform: scale(1.05) !important;
+    box-shadow: 0 0 10px rgba(235, 94, 40, 0.5) !important;
+}
+
+#loginButton:active,
+button.LogIn:active {
+    transform: scale(0.98) !important;
+}
+
 
 
