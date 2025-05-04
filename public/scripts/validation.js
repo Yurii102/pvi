@@ -1,4 +1,3 @@
-
 const validations = {
     'student-group': {
         regex: /^[A-Za-z]{2}-\d{2}$/,
@@ -109,6 +108,18 @@ function clearError(input) {
         errorElement.textContent = '';
         errorElement.style.display = 'none';
     }
+}
+
+// ADDED: Global function to clear all errors in the form
+function clearAllErrors() {
+    const form = document.querySelector("#student-form");
+    if (form) {
+        const fields = form.querySelectorAll('input:not([type="radio"]), select');
+        fields.forEach(field => {
+            clearError(field); // Use the existing clearError function
+        });
+    }
+    touchedFields.clear(); // Also clear the set of touched fields
 }
 
 function validateForm() {

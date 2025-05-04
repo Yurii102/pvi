@@ -34,6 +34,11 @@
     overflow: hidden;
 }
 
+.sidebar a:hover {
+    background-color: var(--color-gray-dark);
+    color: var(--color-light);
+}
+
 .sidebar a.active {
     background-color: var(--color-dark); 
     color: var(--color-light); 
@@ -41,10 +46,17 @@
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-.sidebar a:hover {
-    background-color: var(--color-dark); 
-    color: var(--color-light); 
-    transform: translateX(5px);
+/* Styles for disabled link */
+.sidebar a.disabled {
+    color: var(--color-gray-dark);
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none; /* Optional: prevents hover effects defined elsewhere */
+}
+
+.sidebar a.disabled:hover {
+    background-color: transparent; /* Override hover effect */
+    color: var(--color-gray-dark); /* Override hover effect */
 }
 
 .sidebar a:hover::after {

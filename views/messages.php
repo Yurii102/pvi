@@ -14,8 +14,6 @@
 </head>
 <body>
     <a class="skipmain" href="#header" target="_self"><h1>Student Managment</h1></a>
-    
-    <?php include VIEWS . 'layouts/header.php'; ?>
 
     <main>
 

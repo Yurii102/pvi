@@ -1,6 +1,10 @@
 const links = document.querySelectorAll(".sidebar a"); 
 let currentPath = window.location.pathname.split("/").pop();
 
+// Get login status from header data attribute
+const bellElementNav = document.getElementById('bell'); // Use a different variable name if needed
+const isLoggedInNav = bellElementNav ? bellElementNav.dataset.loggedin === 'true' : false;
+
 console.log(currentPath);
 
 // Якщо поточний шлях порожній, то це index.html
@@ -11,6 +15,20 @@ if (!currentPath) {
 links.forEach(link => {
     if (link.getAttribute("href") === `./${currentPath}` || link.getAttribute("href") === currentPath) {
         link.classList.add("active"); 
+    }
+
+    // Disable Dashboard and Tasks links if not logged in
+    const href = link.getAttribute("href");
+    const isDashboardLink = href === './dashboard.php' || href === 'dashboard.php' || href === 'index.php?page=dashboard';
+    // UPDATED: Include checks for tasks.php
+    const isTasksLink = href === './tasks.php' || href === 'tasks.php' || href === './tasks.html' || href === 'tasks.html' || href === 'index.php?page=tasks';
+
+    if (!isLoggedInNav && (isDashboardLink || isTasksLink)) {
+        link.classList.add('disabled');
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            alert("Спочатку потрібно увійти в систему, щоб перейти до цього розділу."); // Updated alert message
+        });
     }
 });
 

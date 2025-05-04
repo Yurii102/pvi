@@ -52,6 +52,30 @@ main {
     transform: scale(1.05);
 }
 
+/* Styles for disabled elements */
+.add-btn:disabled,
+.edit-btn:disabled,
+.delete-btn:disabled {
+    background-color: var(--color-gray-light);
+    color: var(--color-gray-dark);
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none; /* Prevent hover/active transforms */
+    box-shadow: none;
+}
+
+.add-btn:disabled:hover,
+.edit-btn:disabled:hover,
+.delete-btn:disabled:hover {
+    background-color: var(--color-gray-light); /* Keep background same on hover */
+    transform: none;
+}
+
+input[type="checkbox"]:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
 @media screen and (max-width: 768px) {
     .notification-popup { display: none !important; }
 
@@ -147,5 +171,16 @@ main {
     
     .modal-footer button:hover {
         background-color: var(--color-accent);
+    }
+
+    .modal-footer button:disabled {
+        background-color: var(--color-gray-light);
+        color: var(--color-gray-dark);
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .modal-footer button:disabled:hover {
+        background-color: var(--color-gray-light);
     }
 }

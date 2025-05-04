@@ -8,54 +8,65 @@ const profilePopup = document.getElementById('profilePopup');
 const isLoggedIn = bell.dataset.loggedin === "true";
 
 let clickTimer;
+// This listener can stay outside as 'bell' always exists (real or hidden)
 bell.addEventListener('click', (event) => {
     if (!isLoggedIn) {
         event.preventDefault(); // блокує дію
         alert("Спочатку потрібно увійти в систему");
         return;
     }
-    clearTimeout(clickTimer); 
+    clearTimeout(clickTimer);
     clickTimer = setTimeout(() => {
         window.open('/studentApp/index.php?page=messages', '_blank');
-        notificationDot.style.display = 'none';
+        // Check if notificationDot exists before trying to hide it
+        if (notificationDot) {
+            notificationDot.style.display = 'none';
+        }
     }, 300);
-    
+
 });
-
-bellIcon.addEventListener('dblclick', () => {
-    clearTimeout(clickTimer);
-    bellIcon.classList.add('bell-animation');
-    
-    bellIcon.addEventListener('animationend', () => {
-        notificationDot.style.display = 'block';
-        setTimeout(() => {
-        }, 10);
-        
-        bellIcon.classList.remove('bell-animation');
-    }, { once: true });
-});
-
-
-
-
 
 // FIXED: Profile popup event listeners should execute when the user IS logged in (removed the negation)
+// Moved bellIcon and bell mouse listeners inside this block too
 if (isLoggedIn) {
-    // Updated event listeners for bell notifications
-    bell.addEventListener('mouseover', () => {
-        notificationPopup.classList.add('visible');
-    });
-    bell.addEventListener('mouseout', () => {
-        notificationPopup.classList.remove('visible');
-    });
-    // Updated event listeners for profile popup
-    profile.addEventListener('mouseover', () => {
-        profilePopup.classList.add('visible');
-    });
+    // Event listener for bell icon double-click (moved inside)
+    if (bellIcon) {
+        bellIcon.addEventListener('dblclick', () => {
+            clearTimeout(clickTimer);
+            bellIcon.classList.add('bell-animation');
 
-    profile.addEventListener('mouseout', () => {
-        profilePopup.classList.remove('visible');
-    });
+            bellIcon.addEventListener('animationend', () => {
+                if (notificationDot) {
+                    notificationDot.style.display = 'block';
+                }
+                setTimeout(() => {
+                }, 10);
+
+                bellIcon.classList.remove('bell-animation');
+            }, { once: true });
+        });
+    }
+
+    // Updated event listeners for bell notifications (moved inside)
+    if (notificationPopup) {
+        bell.addEventListener('mouseover', () => {
+            notificationPopup.classList.add('visible');
+        });
+        bell.addEventListener('mouseout', () => {
+            notificationPopup.classList.remove('visible');
+        });
+    }
+
+    // Updated event listeners for profile popup
+    if (profile && profilePopup) {
+        profile.addEventListener('mouseover', () => {
+            profilePopup.classList.add('visible');
+        });
+
+        profile.addEventListener('mouseout', () => {
+            profilePopup.classList.remove('visible');
+        });
+    }
 }
 
 const loginButton = document.getElementById('loginButton');
