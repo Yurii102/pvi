@@ -194,6 +194,8 @@
         document.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             if (urlParams.has('login_error')) {
+                // You can get a more specific message from session if needed,
+                // but a generic alert is simpler for now.
                 alert('Invalid username or password.');
                 // Clean the URL to remove the error parameter
                 const newUrl = window.location.pathname + window.location.search.replace(/[\?&]login_error=1/, '').replace(/^&/, '?');

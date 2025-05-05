@@ -1,24 +1,36 @@
 <?php
 require_once __DIR__ . '/../config/db.php';
 
+// Клас для роботи з користувачами (студентами)
 class User {
+    // Метод для автентифікації користувача за іменем та паролем (датою народження)
     static public function login($name, $password) {
         global $pdo;
-        // Check if $pdo is available
         if (!$pdo) {
             error_log("PDO connection not available in User::login");
-            return false; // Indicate failure
+            return false;
         }
         try {
-            // Prepare and execute the query
-            $stmt = $pdo->prepare('SELECT * FROM students WHERE name = ? AND password = ?');
-            $stmt->execute([$name, $password]);
-            // Fetch the user
-            return $stmt->fetch(PDO::FETCH_ASSOC);
+            $stmt = $pdo->prepare('SELECT * FROM students WHERE name = ?');
+            $stmt->execute([$name]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if ($user && isset($user['birthday'])) {
+                $birthDate = new DateTime($user['birthday']);
+                $expectedPassword = $birthDate->format('dmY');
+
+                if ($password === $expectedPassword) {
+                    return $user;
+                }
+            }
+
+            return false;
         } catch (\PDOException $e) {
-            // Log database errors
             error_log("Database error in User::login: " . $e->getMessage());
-            return false; // Indicate failure
+            return false;
+        } catch (\Exception $e) {
+            error_log("Date formatting error in User::login: " . $e->getMessage());
+            return false;
         }
     }
 }

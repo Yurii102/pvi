@@ -1,7 +1,8 @@
 <?php
 
-require_once __DIR__ . '/../models/Student.php'; // Adjust path as needed
+require_once __DIR__ . '/../models/Student.php';
 
+// Контролер для обробки запитів, пов'язаних зі студентами (API)
 class StudentController
 {
     private $studentModel;
@@ -12,7 +13,7 @@ class StudentController
     }
 
     /**
-     * Handle GET request for listing students with pagination.
+     * Обробляє GET-запит для отримання списку студентів з пагінацією.
      */
     public function listStudents(): void
     {
@@ -47,7 +48,7 @@ class StudentController
     }
 
     /**
-     * Handle POST request for adding a new student.
+     * Обробляє POST-запит для додавання нового студента.
      */
     public function addStudent(): void
     {
@@ -69,23 +70,21 @@ class StudentController
 
         $errors = $this->validateStudentData($data);
 
-        // Business rule validation (e.g., age)
+        // Валідація бізнес-правил (наприклад, вік)
         $businessErrors = Student::validateBusinessRules($data);
         $errors = array_merge($errors, $businessErrors);
 
-
-        // Duplicate name check
+        // Перевірка на дублікат імені
         if (empty($errors['name'])) {
              try {
                 if ($this->studentModel->checkDuplicateName($data['name'])) {
-                    $errors['name'] = 'A student with this name already exists.';
+                    $errors['name'] = 'Студент з таким іменем вже існує.';
                 }
             } catch (\PDOException $e) {
                 error_log("Database error during duplicate check: " . $e->getMessage());
-                $errors['database'] = 'Error checking for duplicate name.';
+                $errors['database'] = 'Помилка перевірки дублікату імені.';
             }
         }
-
 
         if (!empty($errors)) {
             http_response_code(400);
@@ -95,17 +94,17 @@ class StudentController
 
         try {
             $newStudentId = $this->studentModel->add($data);
-            http_response_code(201); // Created
-            echo json_encode(['success' => true, 'message' => 'Student added successfully.', 'id' => $newStudentId]);
+            http_response_code(201);
+            echo json_encode(['success' => true, 'message' => 'Студента успішно додано.', 'id' => $newStudentId]);
         } catch (\PDOException $e) {
             error_log("Database error adding student: " . $e->getMessage());
             http_response_code(500);
-            echo json_encode(['success' => false, 'message' => 'Database error occurred during insertion.']);
+            echo json_encode(['success' => false, 'message' => 'Помилка бази даних під час додавання.']);
         }
     }
 
      /**
-     * Handle POST request for updating an existing student.
+     * Обробляє POST-запит для оновлення існуючого студента.
      */
     public function updateStudent(): void
     {
@@ -125,21 +124,21 @@ class StudentController
             return;
         }
 
-        $errors = $this->validateStudentData($data, true); // Pass true for update validation
+        $errors = $this->validateStudentData($data, true); // true для валідації оновлення
 
-        // Business rule validation (e.g., age)
+        // Валідація бізнес-правил
         $businessErrors = Student::validateBusinessRules($data);
         $errors = array_merge($errors, $businessErrors);
 
-        // Duplicate name check (excluding self)
+        // Перевірка на дублікат імені (виключаючи поточного студента)
         if (empty($errors['name']) && !empty($data['id'])) {
              try {
                 if ($this->studentModel->checkDuplicateName($data['name'], (int)$data['id'])) {
-                    $errors['name'] = 'Another student with this name already exists.';
+                    $errors['name'] = 'Інший студент з таким іменем вже існує.';
                 }
             } catch (\PDOException $e) {
                 error_log("Database error during duplicate check: " . $e->getMessage());
-                $errors['database'] = 'Error checking for duplicate name.';
+                $errors['database'] = 'Помилка перевірки дублікату імені.';
             }
         }
 
@@ -152,22 +151,19 @@ class StudentController
         try {
             $affectedRows = $this->studentModel->update((int)$data['id'], $data);
             if ($affectedRows > 0) {
-                echo json_encode(['success' => true, 'message' => 'Student updated successfully.']);
+                echo json_encode(['success' => true, 'message' => 'Студента успішно оновлено.']);
             } else {
-                // ID existed, but no data was actually changed, or ID didn't exist (though validation should catch missing ID)
-                // Check if student exists to differentiate
-                 echo json_encode(['success' => true, 'message' => 'No changes detected for this student.']);
-                 // If you want to return 404 when ID doesn't exist, add a check here using a getById method in the model.
+                 echo json_encode(['success' => true, 'message' => 'Змін для цього студента не виявлено.']);
             }
         } catch (\PDOException $e) {
             error_log("Database error updating student: " . $e->getMessage());
             http_response_code(500);
-            echo json_encode(['success' => false, 'message' => 'Database error occurred during update.']);
+            echo json_encode(['success' => false, 'message' => 'Помилка бази даних під час оновлення.']);
         }
     }
 
     /**
-     * Handle POST request for deleting students.
+     * Обробляє POST-запит для видалення студентів.
      */
     public function deleteStudents(): void
     {
@@ -187,35 +183,34 @@ class StudentController
             return;
         }
 
-        $idsToDelete = array_filter($data['ids'], 'is_numeric'); // Ensure IDs are numeric
+        $idsToDelete = array_filter($data['ids'], 'is_numeric');
 
         if (empty($idsToDelete)) {
              http_response_code(400);
-             echo json_encode(['success' => false, 'message' => 'No valid student IDs provided for deletion.']);
+             echo json_encode(['success' => false, 'message' => 'Не надано дійсних ID студентів для видалення.']);
              return;
         }
 
         try {
             $deletedCount = $this->studentModel->delete($idsToDelete);
             if ($deletedCount > 0) {
-                echo json_encode(['success' => true, 'message' => "Successfully deleted {$deletedCount} student(s)."]);
+                echo json_encode(['success' => true, 'message' => "Успішно видалено {$deletedCount} студент(ів)."]);
             } else {
-                // This could mean IDs didn't exist or deletion failed for other reasons (rare with PKs)
-                 echo json_encode(['success' => false, 'message' => 'No students found with the provided IDs or deletion failed.']);
+                 echo json_encode(['success' => false, 'message' => 'Студентів з наданими ID не знайдено або видалення не вдалося.']);
             }
         } catch (\PDOException $e) {
             error_log("Database error deleting students: " . $e->getMessage());
             http_response_code(500);
-            echo json_encode(['success' => false, 'message' => 'Database error occurred during deletion.']);
+            echo json_encode(['success' => false, 'message' => 'Помилка бази даних під час видалення.']);
         }
     }
 
 
     /**
-     * Validate incoming student data for add/update operations.
-     * @param array $data The data array from the request.
-     * @param bool $isUpdate Is this an update operation (requires ID)?
-     * @return array Array of validation errors.
+     * Валідація вхідних даних студента для операцій додавання/оновлення.
+     * @param array $data Масив даних із запиту.
+     * @param bool $isUpdate Чи це операція оновлення (вимагає ID)?
+     * @return array Масив помилок валідації.
      */
     private function validateStudentData(array $data, bool $isUpdate = false): array
     {
@@ -223,30 +218,32 @@ class StudentController
 
         if ($isUpdate) {
             if (empty($data['id']) || !is_numeric($data['id'])) {
-                 $errors['id'] = 'Valid Student ID is required for update.';
+                 $errors['id'] = 'Для оновлення потрібен дійсний ID студента.';
             }
         }
 
         if (empty($data['student_group'])) {
-            $errors['group'] = 'Group is required.';
-        } elseif (!preg_match('/^[A-Za-z]{2}-\d{2}$/', $data['student_group'])) {
-            $errors['group'] = 'Group should be in format XX-YY (e.g., PZ-21).';
+            $errors['group'] = 'Група є обов\'язковою.';
+        } elseif (!preg_match('/^[A-Za-zА-Яа-яІіЇїЄє]{2}-\d{2}$/u', $data['student_group'])) { // Додано підтримку кирилиці та флаг 'u'
+            $errors['group'] = 'Група повинна бути у форматі XX-YY (наприклад, ПЗ-21).';
         }
+
 
         if (empty($data['name'])) {
-            $errors['name'] = 'Name is required.';
-        } elseif (strlen($data['name']) < 2 || strlen($data['name']) > 100) {
-            $errors['name'] = 'Name should contain 2-100 characters.';
+            $errors['name'] = 'Ім\'я є обов\'язковим.';
+        } elseif (mb_strlen($data['name']) < 2 || mb_strlen($data['name']) > 100) { // Використання mb_strlen для багатобайтових символів
+            $errors['name'] = 'Ім\'я повинно містити 2-100 символів.';
         }
 
+
         if (empty($data['gender']) || !in_array($data['gender'], ['M', 'F'])) {
-            $errors['gender'] = 'Valid gender (M/F) is required.';
+            $errors['gender'] = 'Потрібно вказати стать (M/F).';
         }
 
         if (empty($data['birthday'])) {
-            $errors['birthday'] = 'Birthday is required.';
+            $errors['birthday'] = 'Дата народження є обов\'язковою.';
         } elseif (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $data['birthday'])) {
-            $errors['birthday'] = 'Invalid birthday format (YYYY-MM-DD).';
+            $errors['birthday'] = 'Неправильний формат дати народження (РРРР-ММ-ДД).';
         }
 
         return $errors;

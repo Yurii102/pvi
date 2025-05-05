@@ -1,23 +1,24 @@
 <?php
 
-require_once __DIR__ . '/../config/db.php'; // Adjust path as needed
+require_once __DIR__ . '/../config/db.php';
 
+// Клас для роботи з даними студентів у базі даних
 class Student
 {
     private $pdo;
 
     public function __construct()
     {
-        global $pdo; // Use the global PDO connection
+        global $pdo;
         $this->pdo = $pdo;
     }
 
     /**
-     * Get a paginated list of students.
-     * @param int $limit Number of students per page.
-     * @param int $offset Offset for pagination.
-     * @return array List of students.
-     * @throws PDOException On database error.
+     * Отримати список студентів з пагінацією.
+     * @param int $limit Кількість студентів на сторінці.
+     * @param int $offset Зміщення для пагінації.
+     * @return array Список студентів.
+     * @throws PDOException У разі помилки бази даних.
      */
     public function getAll(int $limit, int $offset): array
     {
@@ -29,9 +30,9 @@ class Student
     }
 
     /**
-     * Count all students.
-     * @return int Total number of students.
-     * @throws PDOException On database error.
+     * Підрахувати загальну кількість студентів.
+     * @return int Загальна кількість студентів.
+     * @throws PDOException У разі помилки бази даних.
      */
     public function countAll(): int
     {
@@ -40,11 +41,11 @@ class Student
     }
 
     /**
-     * Check if a student name already exists (optionally excluding a specific ID).
-     * @param string $name The name to check.
-     * @param int|null $excludeId The ID to exclude from the check (for updates).
-     * @return bool True if the name exists, false otherwise.
-     * @throws PDOException On database error.
+     * Перевірити, чи існує студент з таким іменем (опціонально виключаючи певний ID).
+     * @param string $name Ім'я для перевірки.
+     * @param int|null $excludeId ID, який потрібно виключити з перевірки (для оновлень).
+     * @return bool True, якщо ім'я існує, false в іншому випадку.
+     * @throws PDOException У разі помилки бази даних.
      */
     public function checkDuplicateName(string $name, ?int $excludeId = null): bool
     {
@@ -59,10 +60,10 @@ class Student
     }
 
     /**
-     * Add a new student to the database.
-     * @param array $data Student data (student_group, name, gender, birthday).
-     * @return int The ID of the newly inserted student.
-     * @throws PDOException On database error.
+     * Додати нового студента до бази даних.
+     * @param array $data Дані студента (student_group, name, gender, birthday).
+     * @return int ID новоствореного студента.
+     * @throws PDOException У разі помилки бази даних.
      */
     public function add(array $data): int
     {
@@ -78,11 +79,11 @@ class Student
     }
 
     /**
-     * Update an existing student.
-     * @param int $id The ID of the student to update.
-     * @param array $data Student data (student_group, name, gender, birthday).
-     * @return int Number of affected rows.
-     * @throws PDOException On database error.
+     * Оновити існуючого студента.
+     * @param int $id ID студента для оновлення.
+     * @param array $data Дані студента (student_group, name, gender, birthday).
+     * @return int Кількість змінених рядків.
+     * @throws PDOException У разі помилки бази даних.
      */
     public function update(int $id, array $data): int
     {
@@ -99,10 +100,10 @@ class Student
     }
 
     /**
-     * Delete one or more students by their IDs.
-     * @param array $ids An array of student IDs to delete.
-     * @return int Number of affected rows.
-     * @throws PDOException On database error.
+     * Видалити одного або кількох студентів за їх ID.
+     * @param array $ids Масив ID студентів для видалення.
+     * @return int Кількість змінених рядків.
+     * @throws PDOException У разі помилки бази даних.
      */
     public function delete(array $ids): int
     {
@@ -119,26 +120,24 @@ class Student
     }
 
     /**
-     * Validate student data (business rules like age).
-     * Can be expanded or moved to a dedicated validator class.
-     * @param array $data
-     * @return array Array of errors, empty if valid.
+     * Валідація даних студента (бізнес-правила, наприклад, вік).
+     * @param array $data Дані для валідації.
+     * @return array Масив помилок, порожній якщо дані валідні.
      */
     public static function validateBusinessRules(array $data): array
     {
         $errors = [];
-        // Age validation (example)
+        // Приклад валідації віку
         if (!empty($data['birthday'])) {
             try {
                 $birthDate = new DateTime($data['birthday']);
                 $today = new DateTime();
                 $age = $today->diff($birthDate)->y;
                 if ($age < 15 || $age > 80) {
-                    $errors['birthday'] = 'Age must be between 15 and 80 years.';
+                    $errors['birthday'] = 'Вік має бути між 15 та 80 роками.';
                 }
             } catch (Exception $e) {
-                // This case should ideally be caught by format validation earlier
-                 $errors['birthday'] = 'Invalid date provided for age calculation.';
+                 $errors['birthday'] = 'Некоректна дата для розрахунку віку.';
             }
         }
         return $errors;

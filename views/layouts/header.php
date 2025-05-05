@@ -1,8 +1,4 @@
 <?php
-// REMOVED: Session start is now handled in index.php
-// if (session_status() == PHP_SESSION_NONE) {
-//     session_start();
-// }
 
 // Check login status
 $isLoggedIn = isset($_SESSION['loggedin']) && $_SESSION['loggedin'] === true;
@@ -80,7 +76,8 @@ $username = $isLoggedIn ? $_SESSION['username'] : 'Guest'; // Get username if lo
             </div>
             <div class="modal-body">
                 <!-- Ensure action points to the correct login handler -->
-                <form id="login-form" action="/studentApp/index.php?page=login" method="post">
+                <!-- The action should point to the controller handling the login -->
+                <form id="login-form" action="/studentApp/index.php?action=login" method="post">
                     <div class="form-field">
                         <label for="username">Username:</label>
                         <input type="text" id="username" name="username" required>

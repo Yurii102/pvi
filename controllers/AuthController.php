@@ -1,20 +1,37 @@
 <?php
+// Обробляє процес автентифікації користувача (логін)
 require_once __DIR__ . '/../models/User.php';
 
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'];
-    $password = $_POST['pasword'];
+    $name = $_POST['username'] ?? null;
+    $password = $_POST['password'] ?? null;
 
-    $user = User::login($name, $password);
+    if ($name && $password) {
+        $user = User::login($name, $password);
 
-    if ($user) {
-        $_SESSION['loggedin'] = true;
-        $_SESSION['username'] = $user['name'];
-        header('Location: /studentApp/index.php');
-        exit;
-    }else{
-        $_SESSION['error'] = 'Invalid login';
-        header('Location: /studentApp/index.php');
+        if ($user) {
+            $_SESSION['loggedin'] = true;
+            $_SESSION['username'] = $user['name'];
+            session_regenerate_id(true); // Регенерація ID сесії для безпеки
+            header('Location: /studentApp/index.php?page=student');
+            exit;
+        } else {
+            $_SESSION['login_error'] = 'Неправильне ім\'я користувача або пароль.';
+            header('Location: /studentApp/index.php?page=student&login_error=1');
+            exit;
+        }
+    } else {
+        $_SESSION['login_error'] = 'Потрібно ввести ім\'я користувача та пароль.';
+        header('Location: /studentApp/index.php?page=student&login_error=1');
         exit;
     }
+} else {
+    // Перенаправлення, якщо доступ не через POST
+    header('Location: /studentApp/index.php');
+    exit;
 }
+?>
