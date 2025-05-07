@@ -1,5 +1,4 @@
 <?php
-// Обробляє процес автентифікації користувача (логін)
 require_once __DIR__ . '/../models/User.php';
 
 if (session_status() == PHP_SESSION_NONE) {
@@ -16,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($user) {
             $_SESSION['loggedin'] = true;
             $_SESSION['username'] = $user['name'];
-            session_regenerate_id(true); // Регенерація ID сесії для безпеки
+            session_regenerate_id(true);
             header('Location: /studentApp/index.php?page=student');
             exit;
         } else {
@@ -30,7 +29,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         exit;
     }
 } else {
-    // Перенаправлення, якщо доступ не через POST
     header('Location: /studentApp/index.php');
     exit;
 }
