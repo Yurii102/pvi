@@ -1,0 +1,99 @@
+# ===============================================
+# .gitignore для Chat Server (Node.js)
+# ===============================================
+
+# ===================
+# NODE.JS SPECIFIC
+# ===================
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Package manager files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# ===================
+# ENVIRONMENT & CONFIG
+# ===================
+.env
+.env.local
+.env.*.local
+config.json
+
+# ===================
+# LOGS
+# ===================
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ===================
+# RUNTIME DATA
+# ===================
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# ===================
+# COVERAGE & TESTING
+# ===================
+coverage/
+.coverage
+.nyc_output
+
+# ===================
+# NODE.JS CACHE
+# ===================
+.npm
+.eslintcache
+.node_repl_history
+
+# ===================
+# TEMPORARY FILES
+# ===================
+*.tmp
+*.temp
+.tmp/
+
+# ===================
+# DEVELOPMENT
+# ===================
+# Test files (HTML, JS, PHP)
+test-*
+test_*
+debug-*
+debug_*
+*.test.js
+*.spec.js
+
+# Development tools
+.vscode/
+.idea/
+
+# ===================
+# BATCH & SCRIPT FILES
+# ===================
+# Windows batch files
+*.bat
+*.cmd
+
+# Shell scripts
+*.sh
+
+# PowerShell scripts
+*.ps1
+
+
+Setup.md
+test.html
+create_test_users.sql
+IMPLEMENTATION_COMPLETE.md
+server.js

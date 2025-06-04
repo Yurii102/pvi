@@ -1,0 +1,346 @@
+# ===============================================
+# .gitignore для Student Management Application
+# ===============================================
+
+# ===================
+# NODE.JS / NPM
+# ===================
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Package manager lock files
+package-lock.json
+yarn.lock
+
+# Node.js runtime
+.node_repl_history
+
+# ===================
+# ENVIRONMENT FILES
+# ===================
+# Environment variables (містять чутливі дані)
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Environment configuration
+config.env
+.env.example
+
+# ===================
+# DATABASE
+# ===================
+# Database backups
+*.sql.backup
+*.sql.bak
+database_backup/
+backups/
+
+# MongoDB data directory (якщо локально)
+data/
+mongodb/
+
+# Database configuration with real credentials
+db_config.php
+database.php
+
+# ===================
+# PHP SPECIFIC
+# ===================
+# Composer dependencies
+vendor/
+composer.lock
+
+# PHP configuration
+php.ini
+.htaccess.backup
+
+# PHP sessions and temporary files
+tmp/
+temp/
+sessions/
+
+# ===================
+# LOGS
+# ===================
+# Application logs
+logs/
+*.log
+error.log
+access.log
+debug.log
+
+# PHP error logs
+php_errors.log
+error_log
+
+# Node.js logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# ===================
+# XAMPP SPECIFIC
+# ===================
+# XAMPP configuration files
+xampp/
+htdocs/phpmyadmin/
+apache/
+mysql/
+
+# ===================
+# SECURITY & CREDENTIALS
+# ===================
+# Authentication keys
+*.pem
+*.key
+*.crt
+*.p12
+
+# JWT secrets
+jwt_secret.txt
+secret_key.php
+
+# API keys
+api_keys.php
+credentials.json
+
+# Session files
+sessions/
+PHPSESSID*
+
+# ===================
+# DEVELOPMENT FILES
+# ===================
+# Test files (HTML, PHP, JS)
+test_*.php
+test-*.php
+test_*.html
+test-*.html
+test-*.js
+test_*.js
+debug_*.php
+debug-*.php
+debug_*.html
+debug-*.html
+testing/
+
+# Development utilities
+dev_tools/
+debug/
+
+# Local configuration overrides
+config.local.php
+settings.local.php
+
+# ===================
+# BATCH & SCRIPT FILES
+# ===================
+# Windows batch files (можуть містити чутливі дані)
+*.bat
+*.cmd
+
+# Shell scripts
+*.sh
+
+# PowerShell scripts (з чутливими даними)
+deploy.ps1
+setup.ps1
+
+# ===================
+# UPLOADS & USER CONTENT
+# ===================
+# User uploaded files
+uploads/
+files/
+attachments/
+profile_pictures/
+
+# Generated thumbnails
+thumbnails/
+resized/
+
+# ===================
+# CACHE & TEMPORARY
+# ===================
+# PHP cache
+cache/
+*.cache
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+
+# Browser cache
+.sass-cache/
+
+# ===================
+# SYSTEM FILES
+# ===================
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+*.cab
+*.msi
+*.msm
+*.msp
+*.lnk
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+
+# Linux
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+
+# ===================
+# IDE & EDITOR FILES
+# ===================
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# PhpStorm/IntelliJ
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Notepad++
+*.bak
+
+# ===================
+# VERSION CONTROL
+# ===================
+# Git
+.git/
+*.orig
+*.rej
+
+# SVN
+.svn/
+
+# ===================
+# BUILD & DEPLOYMENT
+# ===================
+# Build directories
+build/
+dist/
+public/build/
+
+# Deployment scripts with sensitive data
+deploy.sh
+deploy.bat
+*.deploy
+
+# Production configuration
+production.config.php
+prod.env
+
+# ===================
+# DOCUMENTATION DRAFTS
+# ===================
+# Draft documentation
+TODO.md
+NOTES.md
+IDEAS.md
+*.draft.md
+
+# Personal notes
+personal_notes/
+my_notes.txt
+
+# ===================
+# SPECIFIC PROJECT FILES
+# ===================
+# Тестові файли HTML (залишаємо основні, видаляємо особисті тести)
+test-personal-*.html
+my-test-*.html
+
+# Backup files
+*.backup
+*.bck
+*.old
+
+# Development databases
+dev_database.sql
+test_database.sql
+
+# Chat server management scripts (якщо містять чутливі дані)
+# server-manager.bat  # Розкоментуйте якщо містить паролі
+
+# Local development tools
+local-tools/
+dev-scripts/
+
+# Performance testing results
+performance/
+benchmarks/
+
+# ===================
+# МОДУЛЬНІ ТЕСТИ
+# ===================
+# Test coverage reports
+coverage/
+*.coverage
+
+# PHPUnit
+phpunit.xml.local
+.phpunit.result.cache
+
+# Node.js testing
+test-results/
+coverage/
+
+# ===================
+# DEPENDENCIES SPECIFIC
+# ===================
+# MongoDB specific
+mongod.lock
+
+# Socket.IO specific
+socket.io-client/
+
+# Express session store
+connect.sid
+
+# ===================
+# CUSTOM PROJECT IGNORES
+# ===================
+# Специфічні для проекту файли
+
+# Local student data exports
+student_exports/
+data_exports/
+
+# Chat message backups
+chat_backups/
+
+# Development certificates
+localhost.crt
+localhost.key
+
+# Local configuration overrides
+local.config.js
+local.config.php
+
+
+DEPLOYMENT.md
+PROJECT_COMPLETION.md

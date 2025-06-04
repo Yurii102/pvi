@@ -180,10 +180,9 @@
     </div>
 
     <!-- REMOVED: Duplicate Login Modal Block -->
-    <!-- <div id="loginModal" class="modal"> ... </div> -->
-
-    <!-- Include JS files at the end -->
+    <!-- <div id="loginModal" class="modal"> ... </div> -->    <!-- Include JS files at the end -->
     <!-- UPDATED: Use absolute paths for JS files for consistency -->
+    <script src="/studentApp/public/scripts/notifications.js"></script>
     <script src="/studentApp/public/scripts/header.js"></script>
     <script src="/studentApp/public/scripts/navigation.js"></script>
     <script src="/studentApp/public/scripts/validation.js"></script>

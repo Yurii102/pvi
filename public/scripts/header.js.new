@@ -1,3 +1,4 @@
+// filepath: c:\Programs\XAMPP\htdocs\studentApp\public\scripts\header.js
 const bell = document.getElementById('bell');
 const notificationDot = document.getElementById('notificationDot');
 const notificationPopup = document.getElementById('notificationPopup');
@@ -5,31 +6,33 @@ const bellIcon = document.getElementById('bellIcon');
 const profile = document.getElementById('user');
 const profilePopup = document.getElementById('profilePopup');
 
-const isLoggedIn = bell.dataset.loggedin === "true";
+const isLoggedIn = bell && bell.dataset.loggedin === "true";
 
 let clickTimer;
 // This listener can stay outside as 'bell' always exists (real or hidden)
-bell.addEventListener('click', (event) => {
-    if (!isLoggedIn) {
-        event.preventDefault(); // блокує дію
-        alert("Спочатку потрібно увійти в систему");
-        return;
-    }    clearTimeout(clickTimer);
-    clickTimer = setTimeout(() => {
-        window.open('/studentApp/index.php?page=messages', '_blank');
-        // Check if notificationDot exists before trying to hide it
-        if (notificationDot) {
-            notificationDot.style.display = 'none';
-            
-            // If we have the notification system, clear all notifications
-            if (window.messageNotifications) {
-                window.messageNotifications.notifications = [];
-                window.messageNotifications.saveNotifications();
-            }
+if (bell) {
+    bell.addEventListener('click', (event) => {
+        if (!isLoggedIn) {
+            event.preventDefault(); // блоку�" дію
+            alert("Спочатку потрібно увійти в систему");
+            return;
         }
-    }, 300);
-
-});
+        
+        // Check if a notification item was clicked - handled in notifications.js
+        if (event.target.closest('.notification-item')) {
+            return;
+        }
+        
+        clearTimeout(clickTimer);
+        clickTimer = setTimeout(() => {
+            window.open('/studentApp/index.php?page=messages', '_blank');
+            // Check if notificationDot exists before trying to hide it
+            if (notificationDot) {
+                notificationDot.style.display = 'none';
+            }
+        }, 300);
+    });
+}
 
 // FIXED: Profile popup event listeners should execute when the user IS logged in (removed the negation)
 // Moved bellIcon and bell mouse listeners inside this block too

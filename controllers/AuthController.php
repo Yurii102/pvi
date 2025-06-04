@@ -10,10 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $password = $_POST['password'] ?? null;
 
     if ($name && $password) {
-        $user = User::login($name, $password);
-
-        if ($user) {
+        $user = User::login($name, $password);        if ($user) {
             $_SESSION['loggedin'] = true;
+            $_SESSION['user_id'] = $user['id'];
             $_SESSION['username'] = $user['name'];
             session_regenerate_id(true);
             header('Location: /studentApp/index.php?page=student');

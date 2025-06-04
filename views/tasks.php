@@ -44,7 +44,7 @@
                 <a href="/studentApp/index.php?page=tasks" id="tasks-link">Tasks</a>
             </nav>
         </aside>
-    </main>
+    </main>    <script src="/studentApp/public/scripts/notifications.js"></script>
     <script src="/studentApp/public/scripts/header.js"></script>
     <script src="/studentApp/public/scripts/navigation.js"></script>
 </body>
